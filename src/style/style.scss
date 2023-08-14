@@ -1,0 +1,22 @@
+.noteExpired {
+  opacity: 0.7;
+  color: white;
+  background-color: rgb(130, 130, 130);
+}
+.notedone {
+  opacity: 0.9;
+  color: black;
+  background-color: rgb(148, 228, 28);
+}
+.notebutton {
+  margin: 1rem 1rem;
+  background-color: rgb(115, 229, 151);
+}
+
+.homepageMsg {
+  margin: 1rem;
+  background-color: rgb(177, 177, 228);
+  border-radius: 7%;
+  border: 3px solid black;
+  padding: 1rem;
+}

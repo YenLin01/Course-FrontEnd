@@ -61,6 +61,14 @@ const NavComponent = ({ currentUser, setCurrentUser }) => {
                   </li>
                 )}
 
+                {currentUser && (
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/note">
+                      記事本
+                    </Link>
+                  </li>
+                )}
+
                 {currentUser && currentUser.user.role == "instructor" && (
                   <li className="nav-item">
                     <Link className="nav-link" to="/postCourse">

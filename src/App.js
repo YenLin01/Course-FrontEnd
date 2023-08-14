@@ -1,3 +1,4 @@
+import "./style/style.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import HomeComponent from "./components/home-component";
@@ -9,6 +10,10 @@ import CourseComponent from "./components/course-component";
 import { useState } from "react";
 import PostCourseComponent from "./components/postCourse-component";
 import EnrollComponent from "./components/enroll-component";
+import PostnoteComponent from "./components/postNote-component";
+import ShowNoteComponent from "./components/ShowNote-component";
+import NotFound from "./components/NotFound";
+
 function App() {
   let [currentUser, setCurrentUser] = useState(authService.getCurrentUser());
   return (
@@ -67,6 +72,25 @@ function App() {
               />
             }
           ></Route>
+          <Route
+            path="note/postnote"
+            element={
+              <PostnoteComponent
+                currentUser={currentUser}
+                setCurrentUser={setCurrentUser}
+              />
+            }
+          ></Route>
+          <Route
+            path="note"
+            element={
+              <ShowNoteComponent
+                currentUser={currentUser}
+                setCurrentUser={setCurrentUser}
+              />
+            }
+          ></Route>
+          <Route path="*" element={<NotFound />}></Route>
         </Route>
       </Routes>
     </BrowserRouter>

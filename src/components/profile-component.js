@@ -1,8 +1,21 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import authService from "../services/auth.service";
+import noteService from "../services/note.service";
 
 const ProfileComponent = ({ currentUser, setCurrentUser }) => {
+  let [expired, setExpired] = useState("");
+  let [todoToday, setTodoToday] = useState("");
+
+  useEffect(() => {
+    noteService.todoToday().then((data) => {
+      setTodoToday(data.data);
+    });
+    noteService.expired().then((data) => {
+      setExpired(data.data);
+    });
+  }, []);
+
   return (
     <div style={{ padding: "3rem" }}>
       {!currentUser && <div>在獲取您的個人資料之前，您必須先登錄。</div>}
@@ -34,6 +47,39 @@ const ProfileComponent = ({ currentUser, setCurrentUser }) => {
               </tr>
             </tbody>
           </table>
+        </div>
+      )}
+      {currentUser && (
+        <div>
+          <h1>今日代辦事項</h1>
+          <div className="container text-center ">
+            <div className="row row-cols-auto">
+              {todoToday.map((todo, index) => {
+                return (
+                  <div className="col homepageMsg" key={index}>
+                    {todo.title}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {currentUser && (
+        <div>
+          <h1>過期事項</h1>
+          <div className="container text-center ">
+            <div className="row row-cols-auto">
+              {expired.map((expire, index) => {
+                return (
+                  <div className="col homepageMsg" key={index}>
+                    {expire.title}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </div>
       )}
     </div>
