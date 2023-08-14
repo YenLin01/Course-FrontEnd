@@ -5,7 +5,7 @@ import HomeComponent from "./components/home-component";
 import RegisterComponent from "./components/register-component";
 import LoginComopnent from "./components/login-component";
 import testComponent from "./components/testComponent";
-import ProfileComponent from "./components/ProfileComponent";
+import ProfileComponent from "./components/profile-component";
 import authService from "./services/auth.service";
 import CourseComponent from "./components/course-component";
 import { useState } from "react";

@@ -21,7 +21,7 @@ const LoginComponent = ({ currentUser, setCurrentUser }) => {
       localStorage.setItem("user", JSON.stringify(response.data));
       setCurrentUser(AuthService.getCurrentUser());
       window.alert("成功登入!即將導向至首頁");
-      navigate("/personalPage");
+      navigate("/profile");
     } catch (e) {
       console.log(e);
       setMessage(e.response.data);

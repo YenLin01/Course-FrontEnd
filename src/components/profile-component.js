@@ -5,8 +5,8 @@ import { useEffect } from "react";
 import noteService from "../services/note.service";
 
 const ProfileComponent = ({ currentUser, setCurrentUser }) => {
-  let [expired, setExpired] = useState("");
-  let [todoToday, setTodoToday] = useState("");
+  let [expired, setExpired] = useState([]);
+  let [todoToday, setTodoToday] = useState([]);
 
   useEffect(() => {
     noteService.todoToday().then((data) => {
