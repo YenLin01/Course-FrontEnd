@@ -4,7 +4,8 @@ import Layout from "./components/Layout";
 import HomeComponent from "./components/home-component";
 import RegisterComponent from "./components/register-component";
 import LoginComopnent from "./components/login-component";
-import ProfileComponent from "./components/profile-component";
+
+import ProfileComponent from "./components/ProfileComponent";
 import authService from "./services/auth.service";
 import CourseComponent from "./components/course-component";
 import { useState } from "react";
