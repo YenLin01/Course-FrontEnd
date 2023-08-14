@@ -37,7 +37,7 @@ function App() {
             }
           ></Route>
           <Route
-            path="/profile"
+            path="/personalPage"
             element={
               <ProfileComponent
                 currentUser={currentUser}
