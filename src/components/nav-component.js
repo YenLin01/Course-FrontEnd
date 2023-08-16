@@ -12,9 +12,21 @@ const NavComponent = ({ currentUser, setCurrentUser }) => {
   return (
     <div>
       <nav>
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        {/* new */}
+        <nav className="navbar navbar-expand-lg bg-body-tertiary">
           <div className="container-fluid">
-            <div className="collapse navbar-collapse" id="navbarNav">
+            <button
+              className="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNavAltMarkup"
+              aria-controls="navbarNavAltMarkup"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span className="navbar-toggler-icon"></span>
+            </button>
+            <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
               <ul className="navbar-nav">
                 <li className="nav-item">
                   <Link className="nav-link active" to="/">
@@ -69,7 +81,7 @@ const NavComponent = ({ currentUser, setCurrentUser }) => {
                   </li>
                 )}
 
-                {currentUser && currentUser.user.role == "instructor" && (
+                {currentUser && currentUser.user.role === "instructor" && (
                   <li className="nav-item">
                     <Link className="nav-link" to="/postCourse">
                       新增課程
@@ -77,7 +89,7 @@ const NavComponent = ({ currentUser, setCurrentUser }) => {
                   </li>
                 )}
 
-                {currentUser && currentUser.user.role == "student" && (
+                {currentUser && currentUser.user.role === "student" && (
                   <li className="nav-item">
                     <Link className="nav-link" to="/enroll">
                       註冊課程

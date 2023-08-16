@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const HomeComponent = () => {
   return (
@@ -6,15 +7,18 @@ const HomeComponent = () => {
       <div className="container py-4">
         <div className="p-5 mb-4 bg-light rounded-3">
           <div className="container-fluid py-5">
-            <h1 className="display-5 fw-bold">學習系統</h1>
+            <h1 className="display-5 fw-bold">學習網站</h1>
             <p className="col-md-8 fs-4">
-              本系統使用 React.js 作為前端框架，Node.js、MongoDB
-              作為後端服務器。這種項目稱為 MERN
-              項目，它是創建現代網站的最流行的方式之一。
+              此project使用 React.js 作為前端框架，Node.js、MongoDB
+              作為後端服務器。創造出一個全端的project
             </p>
-            <button className="btn btn-primary btn-lg" type="button">
-              看看它怎麼運作。
-            </button>
+            <Link
+              className="btn btn-primary btn-lg"
+              to={"https://courseweb-backend.onrender.com"}
+              type="button"
+            >
+              點選此處啟用backEnd
+            </Link>
           </div>
         </div>
 
@@ -25,9 +29,13 @@ const HomeComponent = () => {
               <p>
                 學生可以註冊他們喜歡的課程。本網站僅供練習之用，請勿提供任何個人資料，例如信用卡號碼。
               </p>
-              <button className="btn btn-outline-light" type="button">
+              <Link
+                className="btn btn-outline-light"
+                type="button"
+                to={"/login"}
+              >
                 登錄會員、或者註冊一個帳號
-              </button>
+              </Link>
             </div>
           </div>
           <div className="col-md-6">
@@ -36,9 +44,13 @@ const HomeComponent = () => {
               <p>
                 您可以通過註冊成為一名講師，並開始製作在線課程。本網站僅供練習之用，請勿提供任何個人資料，例如信用卡號碼。
               </p>
-              <button className="btn btn-outline-secondary" type="button">
+              <Link
+                className="btn btn-outline-secondary"
+                type="button"
+                to={"/postCourse"}
+              >
                 今天開始開設課程
-              </button>
+              </Link>
             </div>
           </div>
         </div>

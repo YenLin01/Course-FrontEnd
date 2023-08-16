@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Navigate, useAsyncError, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import noteService from "../services/note.service";
 
 const ShowNoteComponent = ({ currentUser, setCurrentUser }) => {
@@ -22,10 +22,10 @@ const ShowNoteComponent = ({ currentUser, setCurrentUser }) => {
 
   function checkDate(month, date, state) {
     let time = new Date();
-    const currentMonth = time.getMonth() + 1;
-    const currentDate = time.getDate();
+    const currentTime = (time.getMonth() + 1) * 100 + time.getDate();
+    const currentDate = month * 100 + date;
 
-    if (month <= currentMonth && date < currentDate && !state) {
+    if (currentDate < currentTime && !state) {
       return "noteExpired";
     }
   }
@@ -49,12 +49,12 @@ const ShowNoteComponent = ({ currentUser, setCurrentUser }) => {
 
     todoItem.classList.toggle("notedone");
 
-    if (todoItem.classList[2] == "notedone") {
+    if (todoItem.classList[2] === "notedone") {
       setSaveDone(saveDone.concat(noteID));
-      setCancelID(cancelID.filter((data) => data != noteID));
+      setCancelID(cancelID.filter((data) => data !== noteID));
     } else {
       setCancelID(cancelID.concat(noteID));
-      setSaveDone(saveDone.filter((data) => data != noteID));
+      setSaveDone(saveDone.filter((data) => data !== noteID));
     }
   };
 
@@ -73,7 +73,7 @@ const ShowNoteComponent = ({ currentUser, setCurrentUser }) => {
           新增筆記
         </button>
       )}
-      {currentUser && (saveDone.length != 0 || cancelID.length != 0) && (
+      {currentUser && (saveDone.length !== 0 || cancelID.length !== 0) && (
         <div style={{ marginLeft: "1rem" }}>
           確認更改?
           <button className="btn notebutton" onClick={changedoneState}>
@@ -82,7 +82,7 @@ const ShowNoteComponent = ({ currentUser, setCurrentUser }) => {
         </div>
       )}
 
-      {currentUser && notedata && notedata.length != 0 && (
+      {currentUser && notedata && notedata.length !== 0 && (
         <div style={{ display: "flex", flexWrap: "wrap" }}>
           {notedata.map((note, index) => {
             return (
