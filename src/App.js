@@ -4,7 +4,7 @@ import Layout from "./components/Layout";
 import HomeComponent from "./components/home-component";
 import RegisterComponent from "./components/register-component";
 import LoginComopnent from "./components/login-component";
-import testComponent from "./components/testComponent";
+
 import ProfileComponent from "./components/profile-component";
 import authService from "./services/auth.service";
 import CourseComponent from "./components/course-component";
@@ -47,15 +47,7 @@ function App() {
               />
             }
           ></Route>
-          <Route
-            path="test"
-            element={
-              <testComponent
-                currentUser={currentUser}
-                setCurrentUser={setCurrentUser}
-              />
-            }
-          ></Route>
+
           <Route
             path="course"
             element={
