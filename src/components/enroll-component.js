@@ -6,6 +6,14 @@ const EnrollComponent = ({ currentUser, setCurrentUser }) => {
   const navigate = useNavigate();
   let [searchInput, setSearchInput] = useState("");
   let [searchResult, setSearchResult] = useState(null);
+  let [message, setMessage] = useState("");
+
+  useEffect(() => {
+    CourseService.getAllCourse().then((data) => {
+      setSearchResult(data.data);
+    });
+  }, []);
+
   const handleTakeToLogin = () => {
     navigate("/login");
   };
@@ -29,13 +37,15 @@ const EnrollComponent = ({ currentUser, setCurrentUser }) => {
         navigate("/course");
       })
       .catch((e) => {
-        console.log(event.target.id);
-        console.log(e);
+        setMessage(e.response.data);
       });
   };
 
   return (
     <div style={{ padding: "3rem" }}>
+      <div>
+        {message && <div className="alert alert-danger">{message}</div>}
+      </div>
       {!currentUser && (
         <div>
           <p>You must login first before searching for courses.</p>
@@ -65,11 +75,14 @@ const EnrollComponent = ({ currentUser, setCurrentUser }) => {
         </div>
       )}
       {currentUser && searchResult && searchResult.length != 0 && (
-        <div>
-          <p>我們從 API 返回的數據。</p>
+        <div style={{ display: "flex", flexWrap: "wrap" }}>
           {searchResult.map((course) => (
-            <div key={course._id} className="card" style={{ width: "18rem" }}>
-              <div className="card-body">
+            <div
+              key={course._id}
+              className=" card"
+              style={{ width: "18rem", margin: "1rem" }}
+            >
+              <div className=" card-body">
                 <h5 className="card-title">課程名稱：{course.title}</h5>
                 <p className="card-text">{course.description}</p>
                 <p>價格: {course.price}</p>

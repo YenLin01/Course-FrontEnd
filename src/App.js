@@ -14,8 +14,10 @@ import EnrollComponent from "./components/enroll-component";
 import PostnoteComponent from "./components/postNote-component";
 import ShowNoteComponent from "./components/ShowNote-component";
 import NotFound from "./components/NotFound";
+import CoursePage from "./components/CoursePage";
 
 function App() {
+  let [currentCourse, setCurrentCourse] = useState("");
   let [currentUser, setCurrentUser] = useState(authService.getCurrentUser());
   return (
     <BrowserRouter>
@@ -52,6 +54,15 @@ function App() {
             path="course"
             element={
               <CourseComponent
+                currentUser={currentUser}
+                setCurrentUser={setCurrentUser}
+              />
+            }
+          ></Route>
+          <Route
+            path="eachCourse"
+            element={
+              <CoursePage
                 currentUser={currentUser}
                 setCurrentUser={setCurrentUser}
               />

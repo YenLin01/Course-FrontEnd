@@ -3,7 +3,23 @@
   color: white;
   background-color: rgb(130, 130, 130);
 }
-.notedone {
+.courseCard {
+  height: 20rem;
+  div {
+    height: 80%;
+  }
+  Link {
+    height: 20%;
+  }
+  button {
+    height: 20%;
+  }
+}
+
+.updateInput {
+  margin: 0rem 0rem 3rem 0rem;
+}
+.done {
   opacity: 0.9;
   color: black;
   background-color: rgb(148, 228, 28);
@@ -12,11 +28,38 @@
   margin: 1rem 1rem;
   background-color: rgb(115, 229, 151);
 }
+.studentCard {
+  display: flex;
 
+  flex-wrap: wrap;
+  div {
+    width: 30%;
+    padding: 1rem;
+    margin: 1rem;
+    border: 3px solid rgb(0, 0, 0);
+    border-radius: 20px;
+  }
+}
 .homepageMsg {
   margin: 1rem;
   background-color: rgb(177, 177, 228);
   border-radius: 7%;
   border: 3px solid black;
   padding: 1rem;
+}
+
+@media (max-width: 1200px) {
+  .studentCard {
+    div {
+      width: 40%;
+    }
+  }
+}
+
+@media (max-width: 740px) {
+  .studentCard {
+    div {
+      width: 100%;
+    }
+  }
 }

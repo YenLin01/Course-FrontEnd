@@ -42,7 +42,7 @@ const Notecomponent = ({ currentUser, setCurrentUser }) => {
           {message}
         </div>
       )}
-      {currentUser && currentUser.user.role == "instructor" && (
+      {currentUser && (
         <div className="form-group">
           <label htmlFor="exampleforTitle">記事標題</label>
           <input

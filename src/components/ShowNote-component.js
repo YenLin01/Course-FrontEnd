@@ -8,6 +8,7 @@ const ShowNoteComponent = ({ currentUser, setCurrentUser }) => {
 
   const [cancelID, setCancelID] = useState([]);
   const [saveDone, setSaveDone] = useState([]);
+  const [Effect, setEffect] = useState(false);
 
   useEffect(() => {
     let _id;
@@ -18,7 +19,7 @@ const ShowNoteComponent = ({ currentUser, setCurrentUser }) => {
         setNoteData(data.data);
       });
     }
-  }, []);
+  }, [Effect]);
 
   function checkDate(month, date, state) {
     let time = new Date();
@@ -35,21 +36,20 @@ const ShowNoteComponent = ({ currentUser, setCurrentUser }) => {
   };
 
   const deleteHandler = (e) => {
-    let noteItem = e.target.parentElement.parentElement;
-
-    noteItem.remove();
     let noteID = e.target.id;
-
-    noteService.deleteNote(noteID);
+    noteService.deleteNote(noteID).then(() => {
+      setEffect(!Effect);
+    });
   };
 
   const doneHandler = (e) => {
     let todoItem = e.target.parentElement;
     let noteID = e.target.id;
+    console.log(todoItem.classList);
 
-    todoItem.classList.toggle("notedone");
+    todoItem.classList.toggle("done");
 
-    if (todoItem.classList[2] === "notedone") {
+    if (Object.values(todoItem.classList).some((item) => item == "done")) {
       setSaveDone(saveDone.concat(noteID));
       setCancelID(cancelID.filter((data) => data !== noteID));
     } else {
@@ -59,8 +59,8 @@ const ShowNoteComponent = ({ currentUser, setCurrentUser }) => {
   };
 
   const changedoneState = (e) => {
-    noteService.updateStateDone(saveDone);
-    noteService.cancelDone(cancelID);
+    noteService.updateStateDone(saveDone).then(setEffect(!Effect));
+    noteService.cancelDone(cancelID).then(setEffect(!Effect));
     window.alert("更改完成");
     setSaveDone([]);
     setCancelID([]);
@@ -92,20 +92,28 @@ const ShowNoteComponent = ({ currentUser, setCurrentUser }) => {
                 style={{ width: "18rem", margin: "1rem " }}
               >
                 <div
+                  style={{ height: "17rem" }}
                   className={`card-body ${note.state}  ${checkDate(
                     note.TodoDate.month,
                     note.TodoDate.date,
                     note.state
                   )} `}
                 >
-                  <h5 className="card-title">課程名稱:{note.title}</h5>
+                  <div style={{ height: "80%" }}>
+                    <h5 style={{ height: "25%" }} className="card-title ">
+                      記事標題:{note.title}
+                    </h5>
 
-                  <p style={{ margin: "0.5rem 0rem" }} className="card-text">
-                    {note.content}
-                  </p>
-                  <p style={{ margin: "0.5rem 0rem" }}>
-                    預定完成日期: {note.TodoDate.month}/{note.TodoDate.date}
-                  </p>
+                    <p
+                      style={{ height: "45%", margin: "0.5rem 0rem" }}
+                      className="card-text"
+                    >
+                      {note.content}
+                    </p>
+                    <p style={{ margin: "0.5rem 0rem" }}>
+                      預定完成日期: {note.TodoDate.month}/{note.TodoDate.date}
+                    </p>
+                  </div>
 
                   <button
                     id={note._id}

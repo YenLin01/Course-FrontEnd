@@ -12,6 +12,10 @@ const CourseComponent = ({ currentUser, setCurrentUser }) => {
     Navigate("/");
   };
 
+  const courseHandler = (e) => {
+    localStorage.setItem("CPage", JSON.stringify(e.target.id));
+  };
+
   useEffect(() => {
     let _id;
     if (currentUser) {
@@ -67,17 +71,30 @@ const CourseComponent = ({ currentUser, setCurrentUser }) => {
                 key={index}
                 style={{ width: "18rem", margin: "1rem" }}
               >
-                <div className="card-body">
-                  <h5 className="card-title">課程名稱:{course.title}</h5>
-                  <p style={{ margin: "0.5rem 0rem" }} className="card-text">
-                    {course.description}
-                  </p>
-                  <p style={{ margin: "0.5rem 0rem" }}>
-                    學生人數: {course.students.length}
-                  </p>
-                  <p style={{ margin: "0.5rem 0rem" }}>
-                    課程價格: {course.price}
-                  </p>
+                <div className="card-body courseCard">
+                  <div>
+                    <h5 className="card-title">課程名稱: {course.title}</h5>
+                    <p style={{ margin: "0.5rem 0rem" }} className="card-text">
+                      {course.description}
+                    </p>
+                    <p style={{ margin: "0.5rem 0rem" }}>
+                      學生人數: {course.students.length}
+                    </p>
+                    <p style={{ margin: "0.5rem 0rem" }}>
+                      課程價格: {course.price}
+                    </p>
+                  </div>
+                  {currentUser.user.role == "instructor" && (
+                    <Link
+                      data={course}
+                      onClick={courseHandler}
+                      to="/eachCourse"
+                      className=" card-text  btn  btn-primary "
+                      id={course._id}
+                    >
+                      進入課程
+                    </Link>
+                  )}
                 </div>
               </div>
             );

@@ -12,13 +12,6 @@ const HomeComponent = () => {
               此project使用 React.js 作為前端框架，Node.js、MongoDB
               作為後端服務器。創造出一個全端的project
             </p>
-            <Link
-              className="btn btn-primary btn-lg"
-              to={"https://courseweb-backend.onrender.com"}
-              type="button"
-            >
-              點選此處啟用backEnd
-            </Link>
           </div>
         </div>
 

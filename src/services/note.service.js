@@ -1,6 +1,6 @@
 import axios from "axios";
-const API_URL = "https://courseweb-backend.onrender.com/api/note/";
-// const API_URL = "http://localhost:8080/api/note/";
+// const API_URL = "https://courseweb-backend.onrender.com/api/note/";
+const API_URL = "http://localhost:8080/api/note/";
 
 function getToken() {
   let token;
