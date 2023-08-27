@@ -33,6 +33,7 @@ const LoginComponent = ({ currentUser, setCurrentUser }) => {
       <div>
         {message && <div className="alert alert-danger">{message}</div>}
       </div>
+
       <div>
         <div className="form-group">
           <label htmlFor="username">電子信箱：</label>
@@ -58,6 +59,12 @@ const LoginComponent = ({ currentUser, setCurrentUser }) => {
           <button onClick={handleLogin} className="btn btn-primary btn-block">
             <span>登入系統</span>
           </button>
+
+          <div style={{ paddingTop: "3rem" }}>
+            <p>如果不想留下個人資料可以嘗試使用以下帳號:</p>
+            <p>電子信箱: instructor@gmail.com 密碼: instructor</p>
+            <p>電子信箱: student@gmail.com 密碼: student</p>
+          </div>
         </div>
       </div>
     </div>
